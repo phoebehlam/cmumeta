@@ -1,6 +1,6 @@
-#' from ebsco psycinfo output cleaning
+#' from ebsco psycinfo output to cleaned screening sheet
 #'
-#' This function turn the .xlsx file converted EBSCO xml into a cleaned xlsx that provides article ID, first author, year of publication, journal, and title.
+#' This function turns the .xlsx file (converted from the EBSCO xml file) into a clean xlsx that provides article ID, first author, year of publication, journal, and title.
 #' @param path this is the path of the folder containing the .xlsx file converted from the xml EBSCO file.
 #' @param name this is the name of the .xlsx file converted from the xml EBSCO file.
 #' @examples cleanebsco(path = '/Users/phoebelam/Desktop/problemset', name = 'ebsco export').
