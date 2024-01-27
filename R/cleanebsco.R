@@ -21,7 +21,8 @@ cleanebsco<- function(path, name) {
                   year = X34,
                   journal = X28) %>%
     dplyr::select(article_ID, first_author, year, journal, title) %>%
-    dplyr::mutate(article_ID = as.numeric(article_ID)) %>%
+    dplyr::mutate(article_ID = suppressWarnings(as.numeric(article_ID)),
+                  year = suppressWarnings(as.numeric(year))) %>%
     dplyr::filter(is.na(article_ID)==F)-> dat
   
   openxlsx::write.xlsx(dat, paste(path, "/", name, "_cleaned.xlsx", sep=""))
