@@ -7,23 +7,44 @@
 #' @importFrom magrittr "%>%"
 #' @export
 
-cleanebsco<- function(path, name) {
+cleanebsco<- function(path, name, windows=F) {
   
-  openxlsx::read.xlsx(paste(path, "/", name, ".xlsx", sep="")) %>%
-    dplyr::group_by(X2) %>%
-    tidyr::fill(X28, .direction = 'up') %>%
-    dplyr::filter(is.na(X7)==F) %>%
-    dplyr::filter(dplyr::row_number()==1) %>%
-    dplyr::ungroup() %>%
-    dplyr::rename(article_ID = X2,
-                  first_author = X7,
-                  title = X15,
-                  year = X34,
-                  journal = X28) %>%
-    dplyr::select(article_ID, first_author, year, journal, title) %>%
-    dplyr::mutate(article_ID = suppressWarnings(as.numeric(article_ID)),
-                  year = suppressWarnings(as.numeric(year))) %>%
-    dplyr::filter(is.na(article_ID)==F)-> dat
+  if (windows == F) {
+    openxlsx::read.xlsx(paste(path, "/", name, ".xlsx", sep="")) %>%
+      dplyr::group_by(X2) %>%
+      tidyr::fill(X28, .direction = 'up') %>%
+      dplyr::filter(is.na(X7)==F) %>%
+      dplyr::filter(dplyr::row_number()==1) %>%
+      dplyr::ungroup() %>%
+      dplyr::rename(article_ID = X2,
+                    first_author = X7,
+                    title = X15,
+                    year = X34,
+                    journal = X28) %>%
+      dplyr::select(article_ID, first_author, year, journal, title) %>%
+      dplyr::mutate(article_ID = suppressWarnings(as.numeric(article_ID)),
+                    year = suppressWarnings(as.numeric(year))) %>%
+      dplyr::filter(is.na(article_ID)==F)-> dat
+    
+  }else if(windows == T) {
+    
+    openxlsx::read.xlsx(paste(path, "/", name, ".xlsx", sep="")) %>%
+      dplyr::group_by(resultID) %>%
+      tidyr::fill(atl, .direction = 'down') %>% 
+      tidyr::fill(jtl, .direction = 'down') %>% 
+      dplyr::filter(is.na(au5)==F) %>% 
+      dplyr::filter(dplyr::row_number()==1) %>%
+      dplyr::ungroup() %>%
+      dplyr::rename(article_ID = resultID,
+                    first_author = au5,
+                    title = atl,
+                    journal = jtl) %>%
+      dplyr::select(article_ID, first_author, year, journal, title) %>%
+      dplyr::mutate(article_ID = suppressWarnings(as.numeric(article_ID)),
+                    year = suppressWarnings(as.numeric(year))) %>%
+      dplyr::filter(is.na(article_ID)==F)-> dat
+    
+  }
   
   openxlsx::write.xlsx(dat, paste(path, "/", name, "_cleaned.xlsx", sep=""))
   
