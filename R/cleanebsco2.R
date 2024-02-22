@@ -18,7 +18,7 @@ cleanebsco2<- function(path, name) {
 
   data.frame(long = as.character(authorlong)) %>%
     dplyr::mutate_all(na_if,"") %>% 
-    suppressWarnings(tidyr::separate(., long, c("first_author_lastname", "first_author_firstname"), sep=", ")) -> auth
+    tidyr::separate(., long, c("first_author_lastname", "first_author_firstname"), sep=", ") -> auth
   
   toDelete <- seq(0, nrow(auth), 2)
   auth[ toDelete ,] -> auth
