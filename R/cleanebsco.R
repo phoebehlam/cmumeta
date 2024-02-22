@@ -12,13 +12,13 @@ cleanebsco<- function(path, name, windows=F) {
   if (windows == F) {
   
     openxlsx::read.xlsx(paste(path, "/", name, ".xlsx", sep=""), startRow = 2) %>% 
-      rename(article_ID = `/rec/@resultID`,
+      dplyr::rename(article_ID = `/rec/@resultID`,
              author = `/rec/header/controlInfo/artinfo/aug/au`,
              title = `/rec/header/controlInfo/artinfo/tig/atl`,
              journal = `/rec/header/controlInfo/jinfo/jtl`,
              abstract = `/rec/header/controlInfo/artinfo/ab`,
              year = `/rec/header/controlInfo/pubinfo/dt/@year`) %>%
-      select(article_ID, author, title, journal, abstract, year)-> dat
+      dplyr::select(article_ID, author, title, journal, abstract, year)-> dat
     
     dat %>% 
       dplyr::group_by(article_ID) %>%
