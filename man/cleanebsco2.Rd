@@ -7,12 +7,12 @@
 cleanebsco2(path, name)
 }
 \arguments{
-\item{path}{this is the path of the folder containing the .xlsx file converted from the xml EBSCO file.}
+\item{path}{this is the path of the folder containing the .xml}
 
-\item{name}{this is the name of the .xlsx file converted from the xml EBSCO file.}
+\item{name}{this is the name of the .xml file converted from the xml EBSCO file.}
 }
 \description{
-This function turns the .xlsx file (converted from the EBSCO xml file) into a clean xlsx that provides article ID, first author, year of publication, journal, and title.
+This function turns the .xml file into a clean xlsx that provides article ID, first author, year of publication, journal, and title.
 }
 \examples{
 cleanebsco(path = '/Users/phoebelam/Desktop/problemset', name = 'ebsco export').
