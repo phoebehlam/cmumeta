@@ -10,6 +10,7 @@
 cleanebsco<- function(path, name, windows=F) {
   
   if (windows == F) {
+    
     openxlsx::read.xlsx(paste(path, "/", name, ".xlsx", sep="")) %>%
       dplyr::group_by(X2) %>%
       tidyr::fill(X28, .direction = 'up') %>%
