@@ -14,14 +14,24 @@ cleanebsco2<- function(path, name) {
   xml2::xml_text(xml2::xml_find_all(dat, ".//btl")) -> title
   xml2::xml_text(xml2::xml_find_all(dat, ".//jtl")) -> journal
   xml2::xml_text(xml2::xml_find_all(dat, ".//@year")) -> year
+  xml2::xml_text(xml_find_all(dat, ".//aug")) -> authorlong
+
+  data.frame(long = as.character(authorlong)) %>%
+    dplyr::mutate_all(na_if,"") %>% 
+    tidyr::separate(., long, c("first_author_lastname", "first_author_firstname"), sep=", ") -> auth
+  
+  toDelete <- seq(0, nrow(auth), 2)
+  auth[ toDelete ,] -> auth
   
   data.frame(article_id = articleid,
              title = title, 
              journal = journal,
              year = year) -> new
   
+  cbind(new, auth) %>%
+    select(., article_id, title, first_author_lastname, first_author_firstname, journal, year)-> final
   
-  openxlsx::write.xlsx(new, paste(path, "/", name, "_cleaned.xlsx", sep=""))
+  openxlsx::write.xlsx(final, paste(path, "/", name, "_cleaned.xlsx", sep=""))
   
   print("cmumeta  |  clean EBSCO search file exported, please check your folder.")
   
