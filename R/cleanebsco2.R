@@ -1,12 +1,11 @@
 #' from ebsco psycinfo output to cleaned screening sheet
 #'
-#' This function turns the .xlsx file (converted from the EBSCO xml file) into a clean xlsx that provides article ID, first author, year of publication, journal, and title.
-#' @param path this is the path of the folder containing the .xlsx file converted from the xml EBSCO file.
-#' @param name this is the name of the .xlsx file converted from the xml EBSCO file.
+#' This function turns the .xml file into a clean xlsx that provides article ID, first author, year of publication, journal, and title.
+#' @param path this is the path of the folder containing the .xml
+#' @param name this is the name of the .xml file converted from the xml EBSCO file.
 #' @examples cleanebsco(path = '/Users/phoebelam/Desktop/problemset', name = 'ebsco export').
 #' @importFrom magrittr "%>%"
 #' @export
-
 cleanebsco2<- function(path, name) {
   
   dat <- xml2::read_xml(paste(path, "/", name, ".xml", sep=""))
