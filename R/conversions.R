@@ -521,10 +521,10 @@ t.r <- function (t, n, k=0, dir) {
 #' dat %>% mutate (r_from_bse = bse.r(reg_coef, reg_se, reg_n, reg_predictors)) -> dat
 #'
 #' @export
-bse.r <- function (b, se, n, k) {
-  if (missing(k)) {
-    stop ('hi, please specify k (the number of predictors)')
-  }
+bse.r <- function (b, se, n, k=0) {
+  # if (missing(k)) {
+  #   stop ('hi, please specify k (the number of predictors)')
+  # }
   t = b/se
   r = sign(b)*sqrt(t^2/(t^2 + (n - k - 1)))
   return (r)
