@@ -549,7 +549,7 @@ bse.r <- function (b, se, n, k) {
 #' @export
 bci.r <- function (b, cil, ciu, n, k=0, result = c("cil", "ciu", "avg")) {
   # if (missing(k)) {
-  #   stop ('hi, please specify k (the number of predictors)')
+  #   k=0
   # }
 
   if (missing(result)) {
@@ -585,9 +585,9 @@ bci.r <- function (b, cil, ciu, n, k=0, result = c("cil", "ciu", "avg")) {
 #'
 #' @export
 expb.r <- function (b, cil, ciu, n, k=0) {
-  if (missing(k)) {
-    stop ('hi, please specify k (the number of predictors)')
-  }
+  # if (missing(k)) {
+  #   stop ('hi, please specify k (the number of predictors)')
+  # }
 
   lnb = log (b)
   lncil = log (cil)
