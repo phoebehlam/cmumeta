@@ -17,6 +17,88 @@ d.g <- function (d, n) {
   return (g)
 }
 
+
+#' variance of d
+#'
+#' variance of cohen's d\cr
+#' equation #4.20 inboreinstein et al., 2009 (introduction to meta-analysis)
+#'
+#' @param d cohen's d
+#' @param n1 number of participants in group 1
+#' @param n2 number of participants in group 2
+#'
+#' @examples vard(.89, 24, 36)
+#'
+#' @export
+vard <- function (d, n1, n2) {
+  
+  vard = (n1+n2)/(n1*n2) + ((d^2)/(2*(n1+n2)))
+  
+  return (vard)
+}
+
+#' variance of g
+#'
+#' variance of hedges' g\cr
+#' equation #4.24 inboreinstein et al., 2009 (introduction to meta-analysis)
+#'
+#' @param d cohen's d
+#' @param n1 number of participants in group 1
+#' @param n2 number of participants in group 2
+#'
+#' @examples varg(.3, 68)
+#' @examples dat %>% mutate (g = d.g(cohensd, totaln)) -> dat
+#'
+#' @export
+varg <- function (d, n1, n2) {
+  
+  j = 1- (3/(4*(n1+n2-2)-1))
+  vard = vard(d, n1, n2)
+  
+  varg = j^2 * vard
+  
+  return (varg)
+}
+
+#' t to d
+#'
+#' independent t-statistics to cohen's d\cr
+#' 
+#' @param t the independent t-statistics
+#' @param n1 group 1 sample size
+#' @param n2 group 2 sample size
+#' @param dir empirical direction: +1 or -1. articles sometimes report t-statistics in absolute value, may be prudent to check when extracting stats\cr
+#' if the reported t-statistics is positive, read text to ensure it reflects a positive association, enter the t as is and enter dir = 1 if so\cr
+#' if the reported t-statistics is positive, but text suggests a negative association, enter the t as is and enter dir = -1\cr
+#' if the reported t-statistics is negative, you can simply enter the negative t-value and enter dir = 1\cr
+#' note: if your t-statistics is computed from taking the ratio of b and se, e.g., using bse.t(), then it should already have empirical direction "built-in" since b is directional itself, so simply enter dir = 1
+#'
+#' @examples
+#' t.g(2.14, 20, 35, -1)
+#' dat %>% mutate (g = t.g(t_stat, n1, n2, direction)) -> dat
+#'
+#' @export
+t.d <- function (t, n1, n2, dir, k=0) {
+  # if (missing(k)) {
+  #   stop ("hi, please specify k (the number of predictors); if t-test of two groups with no covariates, enter k = 1")
+  # } #k = 1 here instead of 0 for no covariates because df for 2-sampled t-test is (n1 - 1) + (n2 - 1) = total n - 2, so k - 1 will give n - 1 - 1
+  
+  df = n1+n2-2
+  
+  if (missing (dir)) {
+    
+    d = sign(t)*(t*(n1+n2)/sqrt(n1*n2*df))
+    
+  } else {
+    
+    d = sign(dir)*(t*(n1+n2)/sqrt(n1*n2*df))
+    
+  }
+  
+  return (d)
+}
+
+
 #' t to g
 #'
 #' independent t-statistics to hedges' g\cr
@@ -35,7 +117,7 @@ d.g <- function (d, n) {
 #' dat %>% mutate (g = t.g(t_stat, n1, n2, direction)) -> dat
 #'
 #' @export
-indt.g <- function (t, n1, n2, dir, k=0) {
+t.g <- function (t, n1, n2, dir, k=0) {
   # if (missing(k)) {
   #   stop ("hi, please specify k (the number of predictors); if t-test of two groups with no covariates, enter k = 1")
   # } #k = 1 here instead of 0 for no covariates because df for 2-sampled t-test is (n1 - 1) + (n2 - 1) = total n - 2, so k - 1 will give n - 1 - 1
