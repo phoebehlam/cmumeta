@@ -4,9 +4,9 @@
 \alias{t.g}
 \title{t to g}
 \usage{
-\method{t}{g}(t, n1, r, sdpre, sdpost, dir, k = 0)
+\method{t}{g}(t, n1, r, sdpre, sdpost, dir, k = 1)
 
-\method{t}{g}(t, n1, r, sdpre, sdpost, dir, k = 0)
+\method{t}{g}(t, n1, r, sdpre, sdpost, dir, k = 1)
 }
 \arguments{
 \item{t}{the paired-sample/dependent t-statistics}

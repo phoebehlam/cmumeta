@@ -4,7 +4,7 @@
 \alias{t.r}
 \title{t to r}
 \usage{
-\method{t}{r}(t, n, k = 0, dir)
+\method{t}{r}(t, n, k = 1, dir)
 }
 \arguments{
 \item{t}{the t-statistics}

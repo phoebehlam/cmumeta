@@ -15,7 +15,7 @@ geoci.se(geomean, cil, ciu, n, k = 0, result = c("cil", "ciu"))
 
 \item{n}{cell size}
 
-\item{k}{total number of predictors (k=0 for raw)}
+\item{k}{total number of predictors (k=1 for raw)}
 }
 \description{
 confidence interval around geometric mean to standard error of arithmetic mean of logged raw units

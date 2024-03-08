@@ -4,7 +4,7 @@
 \alias{regp.r}
 \title{p to r}
 \usage{
-regp.r(p, n, k = 0, dir)
+regp.r(p, n, k = 1, dir)
 }
 \arguments{
 \item{p}{the p-value}

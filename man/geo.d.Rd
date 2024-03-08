@@ -34,7 +34,7 @@ geo.d(
 
 \item{n2}{cell size of group 2}
 
-\item{k}{total number of predictors (k=0 for raw)}
+\item{k}{total number of predictors (k=1 for raw)}
 }
 \description{
 geometric means and confidence interval of two groups to cohen's d

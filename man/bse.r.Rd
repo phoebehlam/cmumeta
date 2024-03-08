@@ -4,7 +4,7 @@
 \alias{bse.r}
 \title{b and se to r}
 \usage{
-bse.r(b, se, n, k = 0)
+bse.r(b, se, n, k = 1)
 }
 \arguments{
 \item{b}{the regression coefficient (untransformed only, see other functions e.g., expb.r() for transformed coefficients)}

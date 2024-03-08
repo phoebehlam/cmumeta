@@ -4,7 +4,7 @@
 \alias{meanci.d}
 \title{mean and ci to d}
 \usage{
-meanci.d(m1, m2, cil1, ciu1, cil2, ciu2, n1, n2, k = 0)
+meanci.d(m1, m2, cil1, ciu1, cil2, ciu2, n1, n2, k = 1)
 }
 \arguments{
 \item{m1}{mean of group 1}
@@ -23,7 +23,7 @@ meanci.d(m1, m2, cil1, ciu1, cil2, ciu2, n1, n2, k = 0)
 
 \item{n2}{cell size of group 2}
 
-\item{k}{total number of predictors (k=0 for raw)}
+\item{k}{total number of predictors (k=1 for raw)}
 }
 \description{
 means and confidence interval of two groups to cohen's d

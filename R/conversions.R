@@ -78,7 +78,7 @@ varg <- function (d, n1, n2) {
 #' dat %>% mutate (g = t.g(t_stat, n1, n2, direction)) -> dat
 #'
 #' @export
-t.d <- function (t, n1, n2, dir, k=0) {
+t.d <- function (t, n1, n2, dir, k=1) {
   # if (missing(k)) {
   #   stop ("hi, please specify k (the number of predictors); if t-test of two groups with no covariates, enter k = 1")
   # } #k = 1 here instead of 0 for no covariates because df for 2-sampled t-test is (n1 - 1) + (n2 - 1) = total n - 2, so k - 1 will give n - 1 - 1
@@ -117,7 +117,7 @@ t.d <- function (t, n1, n2, dir, k=0) {
 #' dat %>% mutate (g = t.g(t_stat, n1, n2, direction)) -> dat
 #'
 #' @export
-t.g <- function (t, n1, n2, dir, k=0) {
+t.g <- function (t, n1, n2, dir, k=1) {
   # if (missing(k)) {
   #   stop ("hi, please specify k (the number of predictors); if t-test of two groups with no covariates, enter k = 1")
   # } #k = 1 here instead of 0 for no covariates because df for 2-sampled t-test is (n1 - 1) + (n2 - 1) = total n - 2, so k - 1 will give n - 1 - 1
@@ -160,7 +160,7 @@ t.g <- function (t, n1, n2, dir, k=0) {
 #' dat %>% mutate (g = t.g(t_stat, n1, n2, direction)) -> dat
 #'
 #' @export
-t.g <- function (t, n1, r, sdpre, sdpost, dir, k=0) {
+t.g <- function (t, n1, r, sdpre, sdpost, dir, k=1) {
   # if (missing(k)) {
   #   stop ("hi, please specify k (the number of predictors); if t-test of two groups with no covariates, enter k = 1")
   # } #k = 1 here instead of 0 for no covariates because df for 2-sampled t-test is (n1 - 1) + (n2 - 1) = total n - 2, so k - 1 will give n - 1 - 1
@@ -410,7 +410,7 @@ ci.se <- function (est, cil, ciu, n, k=0, result = c("ciu", "cil", "avg", "diff"
 #' se.diff(4.05, 1.56, 10.51, 141, 8, "exp b")
 #'
 #' @export
-sediff <- function (est, cil, ciu, n, k=0, type = c("reg", "exp b", "geo", "percent")) {
+sediff <- function (est, cil, ciu, n, k=1, type = c("reg", "exp b", "geo", "percent")) {
   # if (missing(k)) {
   #   stop ("hi, please specify k (the number of predictors); if determining se for raw means enter 0.")
   # }
@@ -493,7 +493,7 @@ bse.t <- function (b, se) {
 #' dat %>% mutate (r_from_t = t.r(t_stat, analytical_n, direction)) -> dat
 #'
 #' @export
-t.r <- function (t, n, k=0, dir) {
+t.r <- function (t, n, k=1, dir) {
   # if (missing(k)) {
   #   stop ("hi, please specify k (the number of predictors); if t-test of two groups with no covariates, enter k = 1")
   # } #k = 1 here instead of 0 for no covariates because df for 2-sampled t-test is (n1 - 1) + (n2 - 1) = total n - 2, so k - 1 will give n - 1 - 1
@@ -521,7 +521,7 @@ t.r <- function (t, n, k=0, dir) {
 #' dat %>% mutate (r_from_bse = bse.r(reg_coef, reg_se, reg_n, reg_predictors)) -> dat
 #'
 #' @export
-bse.r <- function (b, se, n, k=0) {
+bse.r <- function (b, se, n, k=1) {
   # if (missing(k)) {
   #   stop ('hi, please specify k (the number of predictors)')
   # }
@@ -547,9 +547,9 @@ bse.r <- function (b, se, n, k=0) {
 #' dat %>% mutate (r_from_bci = bci.r(reg_coef, reg_lowerci, reg_upperci, reg_n, reg_predictors)) -> dat
 #'
 #' @export
-bci.r <- function (b, cil, ciu, n, k=0, result = c("cil", "ciu", "avg")) {
+bci.r <- function (b, cil, ciu, n, k=1, result = c("cil", "ciu", "avg")) {
   # if (missing(k)) {
-  #   k=0
+  #   k=1
   # }
 
   if (missing(result)) {
@@ -584,7 +584,7 @@ bci.r <- function (b, cil, ciu, n, k=0, result = c("cil", "ciu", "avg")) {
 #' dat %>% mutate (r_from_expbci = expb.r(expb_coef, expb_lowerci, expb_upperci, expb_n, expb_predictors)) -> dat
 #'
 #' @export
-expb.r <- function (b, cil, ciu, n, k=0) {
+expb.r <- function (b, cil, ciu, n, k=1) {
   # if (missing(k)) {
   #   stop ('hi, please specify k (the number of predictors)')
   # }
@@ -653,7 +653,7 @@ rr.r <- function (rr, prev, n1, n2) {
 #' dat %>% mutate (r_from_perc = percent.r(percent, percent_lowerci, percent_upperci, percent_n, percent_predictors)) -> dat
 #'
 #' @export
-percent.r <- function (percent, cil, ciu, n, k=0, result = c("cil", "ciu", "avg")) {
+percent.r <- function (percent, cil, ciu, n, k=1, result = c("cil", "ciu", "avg")) {
   # if (missing(k)) {
   #   stop ('hi, please specify k (the number of predictors)')
   # }
@@ -726,7 +726,7 @@ f.r <- function (f, df, dir) {
 #' dat %>% mutate (r_from_pval = regp.r(reg_pval, reg_n, reg_predictors, reg_emp_direction)) -> dat
 #'
 #' @export
-regp.r <- function (p, n, k=0, dir) {
+regp.r <- function (p, n, k=1, dir) {
   # if (missing(k)) {
   #   stop ('hi, please specify k (the number of predictors), for 2-sampled t-test without covariates, enter k=1')
   # }
@@ -807,7 +807,7 @@ meansd.g <- function (m1, m2, sd1, sd2, n1, n2) {
 #' dat %>% mutate (t_from_d = d.t(cohend, stress_n, control_n, numpred, emp_dir)) -> dat
 #'
 #' @export
-d.t <- function (d, n1, n2, k=0, dir) {
+d.t <- function (d, n1, n2, k=1, dir) {
   if(missing(dir)){
     t = NA_real_
   } else {
@@ -941,14 +941,14 @@ meansd.r <- function (m1, m2, sd1, sd2, n1, n2) {
 #' @param se2 standard error of group 2
 #' @param n1 cell size of group 1
 #' @param n2 cell size of group 2
-#' @param k total number of predictors (k=0 for raw)
+#' @param k total number of predictors (k=1 for raw)
 #'
 #' @examples
 #' meanse.r(15.1, 13.2, .64, .164, 25, 45)
 #' dat %>% mutate (r_from_meanse = meanse.r(stress_mean, control_mean, stress_se, control_se, stress_n, control_n)) -> dat
 #'
 #' @export
-meanse.r <- function (m1, m2, se1, se2, n1, n2, k=0) {
+meanse.r <- function (m1, m2, se1, se2, n1, n2, k=1) {
   sd1 = se.sd(se1, n1)
   sd2 = se.sd(se2, n2)
   r = meansd.r (m1, m2, sd1, sd2, n1, n2)
@@ -968,14 +968,14 @@ meanse.r <- function (m1, m2, se1, se2, n1, n2, k=0) {
 #' @param ciu2 upper bound of 95 confidence interval
 #' @param n1 cell size of group 1
 #' @param n2 cell size of group 2
-#' @param k total number of predictors (k=0 for raw)
+#' @param k total number of predictors (k=1 for raw)
 #'
 #' @examples
 #' meanci.d(35, 28, 30, 40, 26, 30, 26, 54, 0)
 #' dat %>% mutate (d_from_meanci = meanci.r(stress_mean, control_mean, stress_cil, stress_ciu, control_cil, control_ciu, stress_n, control_n, num_predictors))-> dat
 #'
 #' @export
-meanci.d <- function (m1, m2, cil1, ciu1, cil2, ciu2, n1, n2, k=0) {
+meanci.d <- function (m1, m2, cil1, ciu1, cil2, ciu2, n1, n2, k=1) {
   se1_ciu = suppressWarnings(ci.se(m1, cil1, ciu1, n1, k, result = "ciu"))
   se2_ciu = suppressWarnings(ci.se(m2, cil2, ciu2, n2, k, result = "ciu"))
   
@@ -1000,14 +1000,14 @@ meanci.d <- function (m1, m2, cil1, ciu1, cil2, ciu2, n1, n2, k=0) {
 #' @param ciu2 upper bound of 95 confidence interval
 #' @param n1 cell size of group 1
 #' @param n2 cell size of group 2
-#' @param k total number of predictors (k=0 for raw)
+#' @param k total number of predictors (k=1 for raw)
 #'
 #' @examples
 #' meanci.g(35, 28, 30, 40, 26, 30, 26, 54, 0)
 #' dat %>% mutate (g_from_meanci = meanci.g(stress_mean, control_mean, stress_cil, stress_ciu, control_cil, control_ciu, stress_n, control_n, num_predictors))-> dat
 #'
 #' @export
-meanci.g <- function (m1, m2, cil1, ciu1, cil2, ciu2, n1, n2, k=0) {
+meanci.g <- function (m1, m2, cil1, ciu1, cil2, ciu2, n1, n2, k=1) {
   
   d = meanci.d(m1, m2, cil1, ciu1, cil2, ciu2, n1, n2, k)
   g = d.g(d, n1+n2)
@@ -1027,7 +1027,7 @@ meanci.g <- function (m1, m2, cil1, ciu1, cil2, ciu2, n1, n2, k=0) {
 #' @param ciu2 upper bound of 95 confidence interval
 #' @param n1 cell size of group 1
 #' @param n2 cell size of group 2
-#' @param k total number of predictors (k=0 for raw)
+#' @param k total number of predictors (k=1 for raw)
 #'
 #' @examples
 #' meanci.r(35, 28, 30, 40, 26, 30, 26, 54, 0, "ciu")
@@ -1169,7 +1169,7 @@ median.r <- function (median1, median2, min1, max1, min2, max2, n1, n2) {
 #' @param cil lower bound of 95 confidence interval
 #' @param ciu upper bound of 95 confidence interval
 #' @param n cell size
-#' @param k total number of predictors (k=0 for raw)
+#' @param k total number of predictors (k=1 for raw)
 #'
 #' @examples
 #' geoci.se(.76, .41, 1.38, 57, 0)
@@ -1210,7 +1210,7 @@ geoci.se <- function (geomean, cil, ciu, n, k=0, result = c("cil", "ciu")) {
 #' @param ciu2 upper bound of 95 confidence interval
 #' @param n1 cell size of group 1
 #' @param n2 cell size of group 2
-#' @param k total number of predictors (k=0 for raw)
+#' @param k total number of predictors (k=1 for raw)
 #'
 #' @examples
 #' geo.r(.76, .75, .41, 1.38, .45, 1.26, 57, 355, 0)
@@ -1271,7 +1271,7 @@ geo.r <- function (m1, m2, cil1, ciu1, cil2, ciu2, n1, n2, k=0, result = c("sedi
 #' @param ciu2 upper bound of 95 confidence interval
 #' @param n1 cell size of group 1
 #' @param n2 cell size of group 2
-#' @param k total number of predictors (k=0 for raw)
+#' @param k total number of predictors (k=1 for raw)
 #'
 #' @examples
 #' geo.d(.76, .75, .41, 1.38, .45, 1.26, 57, 355, 0)

@@ -4,7 +4,7 @@
 \alias{t.d}
 \title{t to d}
 \usage{
-\method{t}{d}(t, n1, n2, dir, k = 0)
+\method{t}{d}(t, n1, n2, dir, k = 1)
 }
 \arguments{
 \item{t}{the independent t-statistics}

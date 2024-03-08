@@ -4,7 +4,7 @@
 \alias{percent.r}
 \title{percent change to r}
 \usage{
-percent.r(percent, cil, ciu, n, k = 0, result = c("cil", "ciu", "avg"))
+percent.r(percent, cil, ciu, n, k = 1, result = c("cil", "ciu", "avg"))
 }
 \arguments{
 \item{percent}{the percent change calculated from exponentiated logistic regression coefficient \cr

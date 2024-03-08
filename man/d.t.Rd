@@ -4,7 +4,7 @@
 \alias{d.t}
 \title{d to t}
 \usage{
-d.t(d, n1, n2, k = 0, dir)
+d.t(d, n1, n2, k = 1, dir)
 }
 \arguments{
 \item{d}{cohen's d}

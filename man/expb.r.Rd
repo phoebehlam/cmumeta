@@ -4,7 +4,7 @@
 \alias{expb.r}
 \title{exponentiated b and ci to r}
 \usage{
-expb.r(b, cil, ciu, n, k = 0)
+expb.r(b, cil, ciu, n, k = 1)
 }
 \arguments{
 \item{b}{exponentiated logistic regression coefficient}

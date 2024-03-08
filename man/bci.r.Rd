@@ -4,7 +4,7 @@
 \alias{bci.r}
 \title{b and ci to r}
 \usage{
-bci.r(b, cil, ciu, n, k = 0, result = c("cil", "ciu", "avg"))
+bci.r(b, cil, ciu, n, k = 1, result = c("cil", "ciu", "avg"))
 }
 \arguments{
 \item{b}{the regression coefficient (untransformed only, see other functions e.g., expb.r() for transformed coefficients)}
