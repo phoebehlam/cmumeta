@@ -2,9 +2,7 @@
 % Please edit documentation in R/ind.comp.R
 \name{ind.comp}
 \alias{ind.comp}
-\title{takes r from individual item with outcome to estimate the r between composite of those items and outcome
-estimation is based on:
-use with r_composite, y = ( Sum from i=1 to n of r_i,y) / sqrt( n + 2 × ( Sum of r_i,j over all i<j ) )}
+\title{takes r from individual item with outcome to estimate the r between composite of those items and outcome}
 \usage{
 ind.comp(item_outcome, inter_item)
 }
@@ -14,7 +12,6 @@ ind.comp(item_outcome, inter_item)
 \item{inter_item}{a symmetric correlation matrix of inter-item correlations}
 }
 \description{
-takes r from individual item with outcome to estimate the r between composite of those items and outcome
 estimation is based on:
 use with r_composite, y = ( Sum from i=1 to n of r_i,y) / sqrt( n + 2 × ( Sum of r_i,j over all i<j ) )
 }

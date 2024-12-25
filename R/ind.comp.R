@@ -1,4 +1,5 @@
 #' takes r from individual item with outcome to estimate the r between composite of those items and outcome
+#'
 #' estimation is based on: 
 #' use with r_composite, y = ( Sum from i=1 to n of r_i,y) / sqrt( n + 2 × ( Sum of r_i,j over all i<j ) )
 #'
